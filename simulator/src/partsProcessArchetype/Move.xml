@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<MTConnectAssets xmlns="urn:mtconnect.org:MTConnectAssets:1.5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:mtconnect.org:MTConnectAssets:1.5 ../../MTConnectAssets_1.5.xsd" xmlns:xlink="http://www.w3.org/1999/xlink">
+        <Header version="1.5" creationTime="2018-02-02T16:16:16" instanceId="1" sender="localhost" assetBufferSize="1024" assetCount="10"/>
+        <Assets>
+                <ProcessArchetype>
+                        <Uuid>1234_5</Uuid>
+                        <Name>MOVE</Name>
+                        <Description>MOVE</Description>
+                        <TargetMachine>ROBOT</TargetMachine>
+                </ProcessArchetype>
+        </Assets>
+</MTConnectAssets>
+

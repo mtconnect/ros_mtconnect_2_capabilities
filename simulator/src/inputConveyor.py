@@ -11,6 +11,8 @@ from collaborationModel.priority import priority
 from collaborationModel.archetypeToInstance import archetypeToInstance
 from collaborationModel.from_long_pull import from_long_pull, from_long_pull_asset
 
+from partsProcesses.part import PPA
+
 from adapter.mtconnect_adapter import Adapter
 from adapter.long_pull import LongPull
 from adapter.data_item import Event, SimpleCondition, Sample, ThreeDSample
@@ -203,48 +205,53 @@ class inputConveyor:
 
                 self.faulted()
 
-        def part_order(self):
-            #scripted sequence of part order tasks
-            part_quality_list = [
-                self.internal_buffer['good'],
-                self.internal_buffer['bad'],
-                self.internal_buffer['rework']
-                ]
+	def part_process(self, part_archetype_uuid = None, part_assetId = None):
+            if not part_archetype_uuid: return
 
-            if self.cycle_count == 1:
-                self.current_part = "reset"
+            self.parts_processes = PPA(part_archetype_uuid)
+            self.parts_processes.part_instance_uuid = part_assetId
+            self.processes = {}
 
-            if part_quality_list == [True,True,True] and self.current_part == None:
-                self.current_part = 'good'
-                return "coordinator"
-            elif part_quality_list == [False,True,True] and self.current_part == 'good':
-                self.current_part = 'bad'
-                return "coordinator"
-            elif part_quality_list == [False,False,True] and self.current_part == 'bad':
-                self.current_part = 'good'
-                return "collaborator"
-            elif part_quality_list == [True,False,True] and self.current_part == 'good':
-                self.current_part = 'bad'
-                return "collaborator"
-            elif part_quality_list == [True,True,True] and self.current_part == 'bad':
-                self.current_part = 'rework'
-                return "coordinator"
-            elif part_quality_list == [True,True,False] and self.current_part == 'rework':
-                self.current_part = 'good'
-                return "coordinator"
-            elif part_quality_list == [False,True,False] and self.current_part == 'good':
-                self.current_part = 'good'
-                return "collaborator"
-            elif part_quality_list == [True,True,False] and self.current_part == 'good':
-                self.current_part = 'rework'
-                return "collaborator"
-            elif part_quality_list == [True,True,True] and self.current_part == 'rework':
-                self.current_part = 'good'
-                time.sleep(2)
-                print ("Cycle completed!")
-                return "coordinator"
+            capabilities = urllib2.urlopen("http://localhost:5000/conv").read()
+            capabilities = ET.fromstring(capabilities)
+
+            if len(capabilities.tag.split('}'))>1: xmlns = capabilities.tag.split('}')[0]+'}'
+            else: xmlns = str()
+
+            capabilities = capabilities.findall('.//'+xmlns+'Capabilities')[0]
+
+            self.process_instance(self.parts_processes(capabilities, self.device_uuid), str(uuid.uuid4()))
+
+
+        def process_instance(self, asset = None, assetId = None):
+            if self.parts_processes.part_instance_uuid in self.processes:
+                self.part_order('completion')
             else:
-                return None
+                self.processes[self.parts_processes.part_instance_uuid] = assetId
+                self.part_order('arrival')
+
+
+        def part_order(self, status = None):
+
+            if status:
+                self.part_status = status
+
+            self.current_part = 'good'
+
+            if not status and self.part_status == 'arrival':
+                return "coordinator"
+
+            elif not status and self.part_status == 'completion':
+                return "collaborator"
+
+            elif not status and self.part_status == 'reset':
+                return "reset"
+
+            elif not status:
+                return "wait"
+
+            self.OPERATIONAL()
+
 
         def OPERATIONAL(self):
             part_order = self.part_order()
@@ -294,10 +301,10 @@ class inputConveyor:
                 self.priority.collab_check()
 
             else:
-                if part_order == None:
+                if part_order == "reset":
                     self.cell_part(current_part = "reset")
-                else:
-                    self.cell_part(current_part = self.current_part)
+
+            self.part_status = None
 
         def IDLE(self):
             if False not in self.internal_buffer.values():
@@ -316,9 +323,6 @@ class inputConveyor:
             self.has_material = True
 
             self.internal_buffer[self.current_part] = True
-            if self.current_part == 'rework':
-                self.cycle_count = self.cycle_count + 1
-                self.cell_part(cycle_count = True)
 
             self.material_load_interface.superstate.DEACTIVATE()
 

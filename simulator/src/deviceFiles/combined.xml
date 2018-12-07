@@ -4,6 +4,42 @@
 	<Devices>
 		<Device uuid="cnc1" name="cnc" sampleRate="10.0" id="c">
 			<Description manufacturer="Farnzworth" serialNumber=""/>
+			<Configuration>
+	        	        <Capabilities type="DEVICE">
+        		                <Capability type="TYPE" subType="PROVIDED">
+	                	                <Value>CNC</Value>
+						<Capabilities type="PROCESS">
+	                        	        	<Capability type="TYPE" subType="PROVIDED">
+        	                        		        <Value>MILL</Value>
+								<Value>TURN</Value>
+	        		                        </Capability>
+						</Capabilities>
+        		                </Capability>
+					<Capability type="LENGTH" subType="PROVIDED" units="MILLIMETER">
+						<Maximum>1000</Maximum>
+						<Minimum>10</Minimum>
+					</Capability>
+                                        <Capability type="WIDTH" subType="PROVIDED" units="MILLIMETER">
+                                                <Maximum>500</Maximum>
+                                                <Minimum>10</Minimum>
+                                        </Capability>
+                                        <Capability type="HEIGHT" subType="PROVIDED" units="MILLIMETER">
+                                                <Maximum>500</Maximum>
+                                                <Minimum>10</Minimum>
+                                        </Capability>
+                                        <Capability type="DIAMETER" subType="PROVIDED" units="MILLIMETER">
+                                                <Maximum>300</Maximum>
+                                                <Minimum>10</Minimum>
+                                        </Capability>
+                                        <Capability type="MATERIAL" subType="PROVIDED">
+                                                <Value>ALUMINIUM</Value> <!--Hardness/brittleness/ductility based instead?-->
+                                                <Value>STEEL</Value>
+                                        </Capability>
+					<Capability type="MASS" subType="PROVIDED" units="KILOGRAM">
+	                                        <Value>100</Value>
+	                                </Capability>
+	        	        </Capabilities>
+			</Configuration>
 			<DataItems>
 				<DataItem type="AVAILABILITY" category="EVENT" id="avail2" name="avail"/>
 				<DataItem type="SYSTEM" category="CONDITION" id="sy2" name="system"/>
@@ -67,6 +103,48 @@
 			</Components>
 		</Device>
 		<Device uuid="r1" name="robot" sampleRate="10.0" id="b">
+                        <Configuration>
+                                <Capabilities type="DEVICE">
+                                        <Capability type="TYPE" subType="PROVIDED">
+                                                <Value>ROBOT</Value>
+                                                <Capabilities type="PROCESS">
+                                                        <Capability type="TYPE" subType="PROVIDED">
+                                                                <Value>MOVE</Value>
+                                                                <Capabilities type="TASK">
+					                                <Capability type="TYPE" subType="PROVIDED">
+                                        					<Value>MOVE_MATERIAL</Value>
+										<Value>MOVE_TOOL</Value>
+					                                </Capability>
+								</Capabilities>
+                                                        </Capability>
+                                                </Capabilities>
+                                        </Capability>
+                                        <Capability type="LENGTH" subType="PROVIDED" units="MILLIMETER">
+                                                <Maximum>300</Maximum>
+                                                <Minimum>10</Minimum>
+                                        </Capability>
+                                        <Capability type="WIDTH" subType="PROVIDED" units="MILLIMETER">
+                                                <Maximum>300</Maximum>
+                                                <Minimum>10</Minimum>
+                                        </Capability>
+                                        <Capability type="HEIGHT" subType="PROVIDED" units="MILLIMETER">
+                                                <Maximum>300</Maximum>
+                                                <Minimum>10</Minimum>
+                                        </Capability>
+                                        <Capability type="DIAMETER" subType="PROVIDED" units="MILLIMETER">
+                                                <Maximum>200</Maximum>
+                                                <Minimum>10</Minimum>
+                                        </Capability>
+                                        <Capability type="MASS" subType="PROVIDED" units="KILOGRAM">
+                                                <Value>30</Value>
+                                        </Capability>
+                                        <Capability type="MATERIAL" subType="PROVIDED">
+                                                <Value>ALL</Value> 
+                                        </Capability>
+
+                                </Capabilities>
+                        </Configuration>
+
 			<Description manufacturer="Mom" serialNumber="0000"/>
 			<DataItems>
 				<DataItem type="AVAILABILITY" category="EVENT" id="ravail" name="avail"/>
@@ -162,6 +240,39 @@
 		</Device>
 		<Device uuid="conv1" name="conv" sampleRate="10.0" id="c2">
 			<Description manufacturer="Farnzworth" serialNumber=""/>
+			<Configuration>
+                                <Capabilities type="DEVICE">
+                                        <Capability type="TYPE" subType="PROVIDED">
+                                                <Value>CONVEYOR</Value>
+                                                <Capabilities type="PROCESS">
+                                                        <Capability type="TYPE" subType="PROVIDED">
+                                                                <Value>QUEUE</Value>
+								<Value>PROCESS_ARCHETYPE</Value>
+                                                        </Capability>
+                                                </Capabilities>
+                                        </Capability>
+                                        <Capability type="LENGTH" subType="PROVIDED"  units="MILLIMETER">
+                                                <Maximum>1000</Maximum>
+                                        </Capability>
+                                        <Capability type="WIDTH" subType="PROVIDED" units="MILLIMETER">
+                                                <Maximum>1000</Maximum>
+                                        </Capability>
+                                        <Capability type="HEIGHT" subType="PROVIDED" units="MILLIMETER">
+                                                <Maximum>1000</Maximum>
+                                        </Capability>
+                                        <Capability type="DIAMETER" subType="PROVIDED" units="MILLIMETER">
+                                                <Maximum>1000</Maximum>
+                                        </Capability>
+                                        <Capability type="MASS" subType="PROVIDED" units="KILOGRAM">
+                                                <Value>100</Value>
+                                        </Capability>
+                                        <Capability type="MATERIAL" subType="PROVIDED">
+                                                <Value>ALL</Value> 
+                                        </Capability>
+
+                                </Capabilities>
+			</Configuration>
+
 			<DataItems>
 				<DataItem type="AVAILABILITY" category="EVENT" id="avail3" name="avail"/>
 				<DataItem type="SYSTEM" category="CONDITION" id="sy3" name="system"/>
@@ -191,6 +302,38 @@
 		
 		<Device uuid="b1" name="buffer" sampleRate="10.0" id="b2">
 			<Description manufacturer="Farnzworth" serialNumber=""/>
+                        <Configuration>
+                                <Capabilities type="DEVICE">
+                                        <Capability type="TYPE" subType="PROVIDED">
+                                                <Value>BUFFER</Value>
+                                                <Capabilities type="PROCESS">
+                                                        <Capability type="TYPE" subType="PROVIDED">
+                                                                <Value>QUEUE</Value>
+                                                        </Capability>
+                                                </Capabilities>
+                                        </Capability>
+                                        <Capability type="LENGTH" subType="PROVIDED"  units="MILLIMETER">
+                                                <Maximum>1000</Maximum>
+                                        </Capability>
+                                        <Capability type="WIDTH" subType="PROVIDED" units="MILLIMETER">
+                                                <Maximum>1000</Maximum>
+                                        </Capability>
+                                        <Capability type="HEIGHT" subType="PROVIDED" units="MILLIMETER">
+                                                <Maximum>1000</Maximum>
+                                        </Capability>
+                                        <Capability type="DIAMETER" subType="PROVIDED" units="MILLIMETER">
+                                                <Maximum>1000</Maximum>
+                                        </Capability>
+                                        <Capability type="MASS" subType="PROVIDED" units="KILOGRAM">
+                                                <Value>100</Value>
+                                        </Capability>
+                                        <Capability type="MATERIAL" subType="PROVIDED">
+                                                <Value>ALL</Value> 
+                                        </Capability>
+
+                                </Capabilities>
+                        </Configuration>
+
 			<DataItems>
 				<DataItem type="AVAILABILITY" category="EVENT" id="avail4" name="avail"/>
 				<DataItem type="SYSTEM" category="CONDITION" id="sy4" name="system"/>
@@ -220,6 +363,39 @@
 		
 		<Device uuid="cmm1" name="cmm" sampleRate="10.0" id="cmm2">
 			<Description manufacturer="Farnzworth" serialNumber=""/>
+
+                        <Configuration>
+                                <Capabilities type="DEVICE">
+                                        <Capability type="TYPE" subType="PROVIDED">
+                                                <Value>CMM</Value>
+                                                <Capabilities type="PROCESS">
+                                                        <Capability type="TYPE" subType="PROVIDED">
+                                                                <Value>MEASURE</Value>
+                                                        </Capability>
+                                                </Capabilities>
+                                        </Capability>
+                                        <Capability type="LENGTH" subType="PROVIDED"  units="MILLIMETER">
+                                                <Maximum>300</Maximum>
+                                        </Capability>
+                                        <Capability type="WIDTH" subType="PROVIDED" units="MILLIMETER">
+                                                <Maximum>300</Maximum>
+                                        </Capability>
+                                        <Capability type="HEIGHT" subType="PROVIDED" units="MILLIMETER">
+                                                <Maximum>300</Maximum>
+                                        </Capability>
+                                        <Capability type="DIAMETER" subType="PROVIDED" units="MILLIMETER">
+                                                <Maximum>300</Maximum>
+                                        </Capability>
+                                        <Capability type="MASS" subType="PROVIDED" units="KILOGRAM">
+                                                <Value>50</Value>
+                                        </Capability>
+                                        <Capability type="MATERIAL" subType="PROVIDED">
+                                                <Value>ALL</Value> 
+                                        </Capability>
+
+                                </Capabilities>
+                        </Configuration>
+
 			<DataItems>
 				<DataItem type="AVAILABILITY" category="EVENT" id="avail5" name="avail"/>
 				<DataItem type="SYSTEM" category="CONDITION" id="sy5" name="system"/>
@@ -246,36 +422,6 @@
 				</Interfaces>
 			</Components>
 		</Device>
-		
-		<Device uuid="conv2" name="conv2" sampleRate="10.0" id="conv2">
-			<Description manufacturer="Farnzworth" serialNumber=""/>
-			<DataItems>
-				<DataItem type="AVAILABILITY" category="EVENT" id="avail6" name="avail"/>
-				<DataItem type="SYSTEM" category="CONDITION" id="sy6" name="system"/>
-			</DataItems>
-			<Components>
-				<Controller name="Controller" id="cont6">
-					<DataItems>
-						<DataItem type="CONTROLLER_MODE" category="EVENT" id="mode6" name="mode"/>
-						<DataItem type="EXECUTION" category="EVENT" id="exec6" name="exec"/>
-					</DataItems>
-				</Controller>
-				<Interfaces name="interfaces" id="if6">
-					<Components>
-						<MaterialHandlerInterface name="material" id="ml6">
-							<DataItems>
-								<!-- Interfaces-->
-								<!--<DataItem type="BINDING" category="EVENT" id="conv2_bind" name="conv2_binding"/>-->
-								<DataItem type="BINDING_STATE" category="EVENT" id="bs6" name="binding_state_material"/>
-								<DataItem type="MATERIAL_LOAD" subType="REQUEST" category="EVENT" id="rlm6" name="material_load"/>
-								<DataItem type="MATERIAL_UNLOAD" subType="REQUEST" category="EVENT" id="rulm6" name="material_unload"/>
-							</DataItems>
-						</MaterialHandlerInterface>
-					</Components>
-				</Interfaces>
-			</Components>
-		</Device>
-
 	</Devices>
 </MTConnectDevices>
 

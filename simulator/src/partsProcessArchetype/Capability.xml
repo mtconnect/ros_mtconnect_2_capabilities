@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<MTConnectAssets xmlns="urn:mtconnect.org:MTConnectAssets:1.5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:mtconnect.org:MTConnectAssets:1.5 ../../MTConnectAssets_1.5.xsd" xmlns:xlink="http://www.w3.org/1999/xlink">
+        <Header version="1.5" creationTime="2018-02-02T16:16:16" instanceId="1" sender="localhost" assetBufferSize="1024" assetCount="10"/>
+        <Assets>
+		<Capabilities>
+			<ParentRef>0001</ParentRef>
+			<Uuid>012345</Uuid>
+			<Capability type="DEVICE_TYPE" subType="REQUESTED">
+				<Value>CNC</Value>
+				<Capability type="PROCESS_TYPE" subType="REQUESTED">
+					<Value>MILL</Value>
+				</Capability>
+			</Capability>
+			<Capability type="DEVICE_TYPE" subType="REQUESTED">
+				<Value>ROBOT</Value>
+				<Capability type="TASK_TYPE" subType="REQUESTED">
+					<Value>MOVE_MATERIAL</Value>
+				</Capability>
+			</Capability>
+                        <Capability type="DEVICE_TYPE" subType="REQUESTED">
+                                <Value>CMM</Value>  
+                                <Capability type="PROCESS_TYPE" subType="REQUESTED">
+                                        <Value>INSPECT</Value>
+                                </Capability>
+                        </Capability>
+                        <Capability type="DEVICE_TYPE" subType="REQUESTED">
+                                <Value>BUFFER</Value>  
+                                <Capability type="PROCESS_TYPE" subType="REQUESTED">
+                                        <Value>QUEUE</Value>
+                                </Capability>
+                        </Capability>
+		<Capabilities>
+	</Assets>
+</MTConnectAssets>

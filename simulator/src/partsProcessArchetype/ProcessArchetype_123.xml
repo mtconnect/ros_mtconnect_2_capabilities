@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<MTConnectAssets xmlns="urn:mtconnect.org:MTConnectAssets:1.5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:mtconnect.org:MTConnectAssets:1.5 ../../MTConnectAssets_1.5.xsd" xmlns:xlink="http://www.w3.org/1999/xlink">
+        <Header version="1.5" creationTime="2018-02-02T16:16:16" instanceId="1" sender="localhost" assetBufferSize="1024" assetCount="10"/>
+        <Assets>
+		<ProcessArchetype>
+			<Uuid>1234</Uuid>
+			<Name>uvwxyz</Name>
+			<Description>ABCD</Description>
+			<PartArchetype>123</PartArchetype>
+			<TargetMachine>CONVEYOR</TargetMachine>
+			<ProcessPlan>
+                                <ProcessStep>
+                                        <OperationNumber>OPTIONAL</OperationNumber>
+                                        <ProcessArchetype>QUEUE</ProcessArchetype>
+                                </ProcessStep>
+				<ProcessStep>
+					<OperationNumber>10</OperationNumber>
+					<ProcessArchetype>MILL</ProcessArchetype>
+				</ProcessStep>
+                                <ProcessStep>
+                                        <OperationNumber>20</OperationNumber>
+                                        <ProcessArchetype>MEASURE</ProcessArchetype>
+                                </ProcessStep>
+			</ProcessPlan>
+			<Capabilities type="PROCESS">
+				<Capability type="TYPE" subType="REQUESTED">
+                                	<Value>MILL</Value>
+					<Capabilities type="DEVICE">
+		                                <Capability type="TYPE" subType="REQUESTED">
+        		                                <Value>CNC</Value>
+                		                </Capability>
+					</Capabilities>
+                        	</Capability>
+	                        <Capability type="TYPE" subType="REQUESTED">
+        	                        <Value>MOVE</Value>
+					<Capabilities type="TASK">
+                                                <Capability type="TYPE" subType="REQUESTED">
+                                                        <Value>MOVE_MATERIAL</Value>
+                                		        <Capabilities type="DEVICE">
+                        	                	        <Capability type="TYPE" subType="REQUESTED">
+                	                                	        <Value>ROBOT</Value>
+	        	                                        </Capability>
+		                                        </Capabilities>
+                                                </Capability>
+                                        </Capabilities>
+	                        </Capability>
+        	                <Capability type="TYPE" subType="REQUESTED">
+                	                <Value>MEASURE</Value>
+					<Capabilities type="DEVICE">
+                                                <Capability type="TYPE" subType="REQUESTED">
+                                                        <Value>CMM</Value>
+                                                </Capability>
+                                        </Capabilities>
+        	                </Capability>
+                	        <Capability type="TYPE" subType="REQUESTED">
+                        	        <Value>QUEUE</Value>
+					<Capabilities type="DEVICE">
+                                                <Capability type="TYPE" subType="REQUESTED">
+                                                        <Value>BUFFER</Value>
+                                                </Capability>
+                                        </Capabilities>
+        	                </Capability>
+			</Capabilities>
+		</ProcessArchetype>
+	</Assets>
+</MTConnectAssets>
